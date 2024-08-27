@@ -1,0 +1,21 @@
+<div class="convert-container">
+  <form [formGroup]="form">
+    <div class="input-group">
+      <input type="text" formControlName="inputText" class="form-control convert-input" placeholder="Text to convert">
+
+      <button [disabled]="form.invalid" class="btn btn-primary convert-button" type="submit" (click)="convertInput()"
+        [class.btn-danger]="inProgress()">
+        {{ inProgress() ? 'Cancel' : 'Convert' }}
+      </button>
+    </div>
+  </form>
+
+  <div class="convert-result">
+    @for(char of convertedText(); let index = $index; track index){
+    {{ char }}
+    }
+    @empty{
+    {{ inProgress() ? "In progress..." : "Type text to convert and press in convert button to start" }}
+    }
+  </div>
+</div>
